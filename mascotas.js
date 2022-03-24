@@ -198,3 +198,58 @@ $("#logout_boton").on("click", function (e) {
         }
     });
 });
+
+function registrar_prof_view() {
+    botones.style.display = "none";
+    $("#registrar_prof").show();
+
+}
+
+$("#form_register_prof").on("submit", function (e) {
+    e.preventDefault();
+    let dni_prof_reg = $("#dni_prof_reg").val();
+    let nombres_prof_reg = $("#nombres_prof_reg").val();
+    let apellidoP_prof_reg = $("#apellidoP_prof_reg").val();
+    let apellidoM_prof_reg = $("#apellidoM_prof_reg").val();
+    let correo_prof_reg = $("#correo_prof_reg").val();
+    let telefono_prof_reg = $("#telefono_prof_reg").val();
+    let direccion_prof_reg = $("#direccion_prof_reg").val();
+    let fechaNac_prof_reg = $("#fechaNac_prof_reg").val();
+    let pass_prof_reg = $("#pass_prof_reg").val();
+    let prof_confirm_password = $("#prof_confirm_password").val();
+    let rol_prof_reg = document.getElementById("rol_prof_reg").value;
+    let formData = new FormData();
+    let files = $("#foto_prof_reg")[0].files[0];
+    formData.append("foto_prof_reg", files);
+    formData.append("dni_prof_reg", dni_prof_reg);
+    formData.append("nombres_prof_reg", nombres_prof_reg);
+    formData.append("apellidoP_prof_reg", apellidoP_prof_reg);
+    formData.append("apellidoM_prof_reg", apellidoM_prof_reg);
+    formData.append("correo_prof_reg", correo_prof_reg);
+    formData.append("telefono_prof_reg", telefono_prof_reg);
+    formData.append("direccion_prof_reg", direccion_prof_reg);
+    formData.append("fechaNac_prof_reg", fechaNac_prof_reg);
+    formData.append("pass_prof_reg", pass_prof_reg);
+    formData.append("prof_confirm_password", prof_confirm_password);
+    formData.append("rol_prof_reg", rol_prof_reg);
+    $.ajax({
+        url: "RegisterProf.php",
+        type: "post",
+        dataType: "json",
+        contentType: false,
+        processData: false,
+        cache: false,
+        data: formData,
+        success: function (data) {
+            if (data.status == "success") {
+                Swal.fire("¡Éxito!", `${data.responce}`, "success");
+                $("#form_register_prof")[0].reset();
+                setTimeout(() => {
+                    window.location.replace("http://127.0.0.1/Welcome.php");
+                }, 2000);
+            } else {
+                Swal.fire("Hubo un problema", `${data.responce}`, "error");
+            }
+        },
+    });
+});

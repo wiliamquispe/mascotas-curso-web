@@ -11,7 +11,8 @@ if(!isset($_SESSION["loggedin"])){
 $pageHeaderContents = file_get_contents("./components/header.php");
 echo str_replace("titulo", "Mascotas", $pageHeaderContents);
 //renderizamos el componente navbar
-echo file_get_contents("./components/navbar.php");
+require __DIR__.'/components/navbar.php';
+//echo file_get_contents("./components/navbar.php");
 ?>
 <div class="d-flex flex-column min-vh-100 justify-content-center align-items-center" id="container_general">
     <div id="botones" class="">
@@ -81,6 +82,85 @@ echo file_get_contents("./components/navbar.php");
             </form>
         </div>
     </div>
+
+    <div class="card my-5" id="registrar_prof" style="width: 30rem; display: none;">
+        <!-- <div class="text-center">
+            <img src="./images/dog1.png" class="carta_img" alt="logo de historia clinica" style="margin: auto;"/>
+        </div> -->
+        <div class="card-body">
+            <h5 class="card-title text-center mb-3">Registro de Profesionales</h5>
+            <form action="#" method="POST" id="form_register_prof" enctype="multipart/form-data">
+                <div class="mb-3">
+                    <label for="dni_prof_reg" class="form-label">Ingresar DNI</label>
+                    <input type="text" class="form-control" id="dni_prof_reg">
+                </div>
+                <div class="mb-3">
+                    <label for="nombres_prof_reg" class="form-label">Nombres</label>
+                    <input type="text" class="form-control" id="nombres_prof_reg">
+                </div>
+                <div class="mb-3">
+                    <label for="apellidoP_prof_reg" class="form-label">Apellido Paterno</label>
+                    <input type="text" class="form-control" id="apellidoP_prof_reg">
+                </div>
+                <div class="mb-3">
+                    <label for="apellidoM_prof_reg" class="form-label">Apellido Materno</label>
+                    <input type="text" class="form-control" id="apellidoM_prof_reg">
+                </div>
+                <div class="mb-3">
+                    <label for="correo_prof_reg" class="form-label">Correo</label>
+                    <input type="email" class="form-control" id="correo_prof_reg">
+                </div>
+                <div class="mb-3">
+                    <label for="telefono_prof_reg" class="form-label">Teléfono</label>
+                    <input type="text" class="form-control" id="telefono_prof_reg">
+                </div>
+                <div class="mb-3">
+                    <label for="direccion_prof_reg" class="form-label">Dirección</label>
+                    <input type="text" class="form-control" id="direccion_prof_reg">
+                </div>
+                <div class="mb-3">
+                    <label for="pass_prof_reg" class="form-label">Password</label>
+                    <div class="input-group">
+                        <input type="password" class="form-control" id="pass_prof_reg" required>
+                        <span class="input-group-text showHidenPass_span">
+                            <i class="fas fa-eye"></i>
+                            <i class="fas fa-eye-slash d-none"></i>
+                        </span>
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <label for="prof_confirm_password" class="form-label">Confirmar Password</label>
+                    <div class="input-group">
+                        <input type="password" class="form-control" id="prof_confirm_password" required>
+                        <span class="input-group-text showHidenPass_span">
+                            <i class="fas fa-eye"></i>
+                            <i class="fas fa-eye-slash d-none"></i>
+                        </span>
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <label for="fechaNac_prof_reg" class="form-label">Fecha Nacimiento</label>
+                    <input type="date" class="form-control" id="fechaNac_prof_reg">
+                </div>
+                <div class="mb-3">
+                    <label for="rol_prof_reg" class="form-label">Seleccione Rol</label>
+                    <Select class="form-select" name="rol_prof_reg" id="rol_prof_reg">
+                        <Option value="veterinario"> Veterinario </option>
+                        <Option value="asistente"> Asistente </option>
+                    </Select>
+                </div>
+                <div class="mb-3">
+                    <label for="foto_prof_reg" class="form-label">Foto</label>
+                    <input class="form-control" type="file" id="foto_prof_reg">
+                </div>
+                <div class="acciones_boton">
+                    <input name="Registrar" Type="Submit" value="Registrar" class="btn btn-primary">
+                    <input Type="button" value="Volver" class="btn btn-primary" id="volver_boton_reg">
+                </div>
+            </form>
+        </div>
+    </div>
+
     <div class="card" id="consultar_mascota" style="display: none;">
         <div class="card-body">
             <h4>Sistema de Identificación Perruno</h4>
