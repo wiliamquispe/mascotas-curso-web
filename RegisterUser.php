@@ -1,12 +1,13 @@
 <?php
 //conexion a la Base de datos de usuarios
-$conn = mysqli_connect( 'localhost', 'wiliam', 'wiliamluis(', 'relocadb' );
+$conn = mysqli_connect( 'localhost', 'wiliam', 'wiliamluis(', 'mascotasdb' );
 if ( !$conn ) {
     die( 'Error de conexion: ' . mysqli_connect_error() );
 }
 
 //capturando datos
 $nombre = $_REQUEST[ 'nombre_usuario_reg' ];
+$dni = $_REQUEST[ 'dni_usuario_reg' ];
 $correo = $_REQUEST[ 'correo_usuario_reg' ];
 $password = $_REQUEST[ 'pass_usuario_reg' ];
 $confirm_password = $_REQUEST[ 'confirm_password' ];
@@ -53,6 +54,44 @@ if(!preg_match('/^[a-zA-Z0-9_]+$/', trim($nombre))) {
     }
 }
 
+//validando el dni de usuario
+if(!preg_match('/^[0-9]{8}$/', trim($dni))) {
+    $statusProcess = "failed";
+    $responce = 'El dni debe contar con solo números y ser de 8 caracteres';
+    $validForm = false;
+} else {
+    //preparamos la sentencia sql
+    $sql = "SELECT id FROM users WHERE dni = ?";
+
+    if($stmt = mysqli_prepare($conn, $sql)){
+        //vincular variables a la declaración preparada como parámetros
+        mysqli_stmt_bind_param($stmt, "s", $param_dni);
+        
+        //establecer parametros
+        $param_dni = trim($dni);
+        
+        //intento de ejecucion de la sentencia sql
+        if(mysqli_stmt_execute($stmt)){
+            //guardar el resultado
+            mysqli_stmt_store_result($stmt);
+            
+            if(mysqli_stmt_num_rows($stmt) == 1){
+                $statusProcess = "failed";
+                $responce = 'El dni de usuario ya está en uso. Intente con otro dato';
+                $validForm = false;
+            } else{
+                $dni = trim($dni);
+            }
+        } else{
+            $statusProcess = "failed";
+            $responce = 'Oops! Algo salió mal. Por favor, inténtelo de nuevo más tarde.';
+            $validForm = false;
+        }
+        //cerramos la sentencia sql
+        mysqli_stmt_close($stmt);
+    }
+}
+
 //validando el password
 if(!preg_match('/^(?=(?:\D*\d){2,})(?=.*[A-Z]){1,}(?=.*[#$%&\/?]{2,})[a-zA-Z0-9#$%&\/?]{8,}$/', trim($password))){
     $statusProcess = "failed";
@@ -75,14 +114,15 @@ if($password != $confirm_password){
 //verificando antes de insertar en la base de datos
 if($validForm){  
     //preparando la sentencia sql
-    $sql = "INSERT INTO users (nombre, correo, password) VALUES (?, ?, ?)";
+    $sql = "INSERT INTO users (nombre, dni, correo, password) VALUES (?, ?, ?, ?)";
      
     if($stmt = mysqli_prepare($conn, $sql)){
         //vinculando variables a la declaración preparada como parámetros
-        mysqli_stmt_bind_param($stmt, "sss", $param_username, $param_correo, $param_password);
+        mysqli_stmt_bind_param($stmt, "ssss", $param_username, $param_dni, $param_correo, $param_password);
         
         //estableciendo los parametros
         $param_username = $username;
+        $param_dni = $dni;
         $param_correo = $correo;
         //md5 password
         $param_password = md5($password);

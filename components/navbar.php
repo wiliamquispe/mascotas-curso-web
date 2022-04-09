@@ -34,7 +34,8 @@
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                         <li><a class="dropdown-item" href="#" onclick="registrar_ventana()">Registrar</a></li>
                         <li><a class="dropdown-item" href="#" onclick="consultar_ventana()">Buscar</a></li>
-                        <li><a class="dropdown-item" href="#">Atender salud</a></li>
+                        <li><a class="dropdown-item" href="#" onclick="atender_ventana()">Atender salud</a></li>
+                        <li><a class="dropdown-item" href="#" onclick="estetica_ventana()">Perruquería</a></li>
                     </ul>
                 </li>
                 <?php

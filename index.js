@@ -2,12 +2,14 @@ $("#registro_usuario").on("click", function (e) {
     e.preventDefault();
     $("#login_div").hide();
     $("#registro_div").show();
+    $("#botones_other_login").hide();
 });
 
 $("#volver_login_boton").on("click", function (e) {
     e.preventDefault();
     $("#login_div").show();
     $("#registro_div").hide();
+    $("#botones_other_login").show();
 });
 
 $("#login_user_form").on("submit", function (e) {
@@ -41,6 +43,7 @@ $("#login_user_form").on("submit", function (e) {
 $("#register_user_form").on("submit", function (e) {
     e.preventDefault();
     let nombre_usuario_reg = $("#nombre_usuario_reg").val();
+    let dni_usuario_reg = $("#dni_usuario_reg").val();
     let correo_usuario_reg = $("#correo_usuario_reg").val();
     let pass_usuario_reg = $("#pass_usuario_reg").val();
     let confirm_password = $("#confirm_password").val();
@@ -49,6 +52,7 @@ $("#register_user_form").on("submit", function (e) {
         type: "post",
         data: {
             nombre_usuario_reg,
+            dni_usuario_reg,
             correo_usuario_reg,
             pass_usuario_reg,
             confirm_password,

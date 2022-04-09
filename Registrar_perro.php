@@ -1,6 +1,6 @@
 <?php
 //conexion a la Base de datos ( Servidor, usuario, password )
-$conn = mysqli_connect( 'localhost', 'wiliam', 'wiliamluis(', 'relocadb' );
+$conn = mysqli_connect( 'localhost', 'wiliam', 'wiliamluis(', 'mascotasdb' );
 if ( !$conn ) {
     die( 'Error de conexion: ' . mysqli_connect_error() );
 }
@@ -18,7 +18,7 @@ $v3 = $_REQUEST[ 'FechNac' ];
 $v4 = $_REQUEST[ 'Raza' ];
 $v5 = $_REQUEST[ 'Genero' ];
 $v6;
-
+$v7 = $_REQUEST[ 'dni_prop_r' ];
 if ( !isset( $v1 ) || !isset( $v2 ) || !isset( $v3 ) || !isset( $v4 ) || !isset( $v5 ) ) {
     $responceData = 'Existen datos vacíos en el formulario';
     $validForm = false;
@@ -61,8 +61,8 @@ if ( isset( $_FILES[ 'Foto' ][ 'name' ] ) ) {
 
 //consulta SQL
 if($validForm) {
-    $sql = 'INSERT INTO perro (dni, nombre, raza, genero, fechaNacimiento, foto) ';
-    $sql .= "VALUES ('$v1', '$v2', '$v4', '$v5', '$v3', '$v6' )";
+    $sql = 'INSERT INTO pets (dni, nombre, raza, genero, fechaNacimiento, foto, propietarioDni) ';
+    $sql .= "VALUES ('$v1', '$v2', '$v4', '$v5', '$v3', '$v6', '$v7' )";
 
     if ( mysqli_query( $conn, $sql ) ) {
         //Mensaje de conformidad
@@ -76,6 +76,7 @@ if($validForm) {
         $dataSaved['genero'] = $v4;
         $dataSaved['raza'] = $v5;
         $dataSaved['foto'] = $v6;
+        $dataSaved['propietarioDni'] = $v7;
     } else {
         echo 'Error: ' . $sql . '<br>' . mysqli_error( $conn );
         $statusProcess = 'failed';

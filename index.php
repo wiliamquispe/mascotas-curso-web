@@ -50,6 +50,10 @@ echo str_replace("titulo", "Inicio", $pageHeaderContents);
                     <input type="text" class="form-control" id="nombre_usuario_reg" required>
                 </div>
                 <div class="mb-3">
+                    <label for="dni_usuario_reg" class="form-label">DNI</label>
+                    <input type="text" class="form-control" id="dni_usuario_reg" required>
+                </div>
+                <div class="mb-3">
                     <label for="correo_usuario_reg" class="form-label">Correo electrónico</label>
                     <input type="email" class="form-control" id="correo_usuario_reg" aria-describedby="emailHelp"
                         required>
