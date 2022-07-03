@@ -1,0 +1,70 @@
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="/docs/4.0/assets/img/favicons/favicon.ico">
+
+    <title>Cover Template for Bootstrap</title>
+
+    <link rel="canonical" href="https://getbootstrap.com/docs/4.0/examples/cover/">
+
+    <!-- Bootstrap core CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
+
+    <!-- Custom styles for this template -->
+    <link href="cover.css" rel="stylesheet">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  </head>
+
+  <body class="text-center">
+
+    <div class="cover-container d-flex h-100 p-3 mx-auto flex-column">
+      <header class="masthead mb-auto">
+        <div class="inner">
+          <h3 class="masthead-brand">Laboratorio 2 - Grupo 1</h3>
+          <nav class="nav nav-masthead justify-content-center">
+            <a class="nav-link active" href="#" id="inicio_boton">Inicio</a>
+            <a class="nav-link" href="#">Referencia</a>
+          </nav>
+        </div>
+      </header>
+
+      <div id="inicio">
+          <main role="main" class="inner cover">
+            <h1 class="cover-heading">Dataset usado</h1>
+            <p class="lead">Explicación de la data y toda la información que contiene</p>
+            <p class="lead">
+              <a href="#" id="consultas_boton" class="btn btn-lg btn-primary">Consultas</a>
+            </p>
+          </main>
+      </div>
+
+
+      <div id="consultas" style="display:none;">
+      <div class='tableauPlaceholder' id='viz1656819743763' style='position: relative'><noscript><a href='http:&#47;&#47;www.boeing.com&#47;commercial&#47;market&#47;commercial-market-outlook&#47;#&#47;interactive-forecast'><img alt='Commercial Market Outlook ' src='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;Bo&#47;BoeingCommercialMarketOutlook2018-2037&#47;CommercialMarketOutlook&#47;1_rss.png' style='border: none' /></a></noscript><object class='tableauViz'  style='display:none;'><param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F' /> <param name='embed_code_version' value='3' /> <param name='site_root' value='' /><param name='name' value='BoeingCommercialMarketOutlook2018-2037&#47;CommercialMarketOutlook' /><param name='tabs' value='no' /><param name='toolbar' value='yes' /><param name='static_image' value='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;Bo&#47;BoeingCommercialMarketOutlook2018-2037&#47;CommercialMarketOutlook&#47;1.png' /> <param name='animate_transition' value='yes' /><param name='display_static_image' value='yes' /><param name='display_spinner' value='yes' /><param name='display_overlay' value='yes' /><param name='display_count' value='yes' /><param name='language' value='es-ES' /></object></div>                
+      </div>
+    </div>
+
+
+    <script type='text/javascript'>                    var divElement = document.getElementById('viz1656819743763');                    var vizElement = divElement.getElementsByTagName('object')[0];                    vizElement.style.width='1290px';vizElement.style.height='1027px';                    var scriptElement = document.createElement('script');                    scriptElement.src = 'https://public.tableau.com/javascripts/api/viz_v1.js';                    vizElement.parentNode.insertBefore(scriptElement, vizElement);                </script>
+    <script>
+        $("#consultas_boton").on("click", function(e) {
+            e.preventDefault();
+            $("#consultas").show();
+            $("#inicio").hide();
+        });
+
+        $("#inicio_boton").on("click", function(e) {
+            e.preventDefault();
+            $("#consultas").hide();
+            $("#inicio").show();
+        });
+    </script>
+  </body>
+</html>
+
